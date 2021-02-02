@@ -3,22 +3,23 @@
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
+  "dependencies": {
+    "express": "^4.17.1",
+    "nodemon": "^2.0.7"
+  },
+  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon node server.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/hackreactor/rpt26-mvp.git"
+    "url": "git+https://github.com/calvinmla/rpt26-mvp.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/hackreactor/rpt26-mvp/issues"
+    "url": "https://github.com/calvinmla/rpt26-mvp/issues"
   },
-  "homepage": "https://github.com/hackreactor/rpt26-mvp#readme",
-  "dependencies": {
-    "express": "^4.17.1",
-    "nodemon": "^2.0.7"
-  }
+  "homepage": "https://github.com/calvinmla/rpt26-mvp#readme"
 }
