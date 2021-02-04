@@ -3,10 +3,10 @@ const express = require('express');
 const app = express();
 const port = 8080;
 
-app.use(express.static('./client'));
+app.use(express.static('./client/dist'));
 
 app.get('/movies', (req, res) => {
-  fs.readFile('./client/index.html', 'utf8', (err, file) => {
+  fs.readFile('./client/dist/index.html', 'utf8', (err, file) => {
     if (err) throw err;
     res.status(200).send(file + '</br>' + 'Accessing API');
   })

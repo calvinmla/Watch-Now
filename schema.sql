@@ -1,6 +1,6 @@
-CREATE DATABASE movies
+CREATE DATABASE movies;
 
-USE movies
+USE movies;
 
 CREATE TABLE top_movies (
   id INT NOT NULL AUTO_INCREMENT,

@@ -1,3 +1,5 @@
+import React, { Fragment } from 'react';
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -5,14 +7,14 @@ class App extends React.Component {
   }
   render() {
     return (
-      <React.Fragment>
+      <Fragment>
         <h1>Watch Now</h1>
         <form action='/movies' method='GET'>
-          <input type='submit' value='Click Here!'></input>
+          <input type='submit' value='Click Here!'/>
         </form>
-      </React.Fragment>
+      </Fragment>
     )
   }
 };
 
-ReactDOM.render(<App/>, document.getElementById('root'));
+export default App;
