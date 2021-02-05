@@ -51,9 +51,9 @@ const  accessMovieAPI = async () => {
 const retrieveMovieTitles = (movieAPIArray) => {
   const movies = [];
   for (let i = 0; i < movieAPIArray.length; i++) {
-    // const tempArray = [];
-    movies.push(movieAPIArray[i].title);
-    // movies.push(tempArray);
+    const tempArray = [];
+    tempArray.push(movieAPIArray[i].title);
+    movies.push(tempArray);
   }
   return movies;
 }

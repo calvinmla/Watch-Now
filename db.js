@@ -14,7 +14,7 @@ db.connection.connect((err) => {
 });
 
 db.insert = (values) => {
-  db.connection.query(`INSERT INTO top_movies (title) VALUES (?)`, values, (err, result) => {
+  db.connection.query(`INSERT INTO top_movies (title) VALUES ?`, [values], (err, results, fields) => {
     if (err) throw err;
     console.log('Insert successful');
   });
