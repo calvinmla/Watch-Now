@@ -1,24 +1,23 @@
 const mysql = require('mysql');
 
-const connection = mysql.createConnection({
+const db = {};
+
+db.connection = mysql.createConnection({
   host: 'localhost',
   user: 'root',
   database: 'movies'
 });
 
-connection.connect((err) => {
+db.connection.connect((err) => {
   if (err) throw err;
   console.log('Database connected!')
-
-  connection.query(
-    CREATE DATABASE movies;
-    USE movies;
-    CREATE TABLE top_movies (
-      id INT NOT NULL AUTO_INCREMENT,
-      title VARCHAR(200) NOT NULL
-    );
-  );
 });
 
+db.insert = (values) => {
+  db.connection.query(`INSERT INTO top_movies (title) VALUES (?)`, values, (err, result) => {
+    if (err) throw err;
+    console.log('Insert successful');
+  });
+};
 
-module.exports = connection;
+module.exports = db;
