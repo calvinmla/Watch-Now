@@ -35,4 +35,14 @@ db.getMovies = (callback) => {
   });
 };
 
+db.count = (callback) => {
+  db.connection.query('SELECT COUNT (title) FROM top_movies', (err, results) => {
+    if (err) {
+      callback(err, null);
+    } else {
+      callback(null, results[0]);
+    }
+  })
+}
+
 module.exports = db;

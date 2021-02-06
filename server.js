@@ -14,24 +14,48 @@ let pageCounter = 1;
 
 
 app.get('/movies', (req, res) => {
-  console.log(pageCounter)
-  // Access API
-  accessMovieAPI()
-    .then(() => {
-      // Retrieve movies from database
-      db.getMovies((err, data) => {
-        if (err) {
-          throw err;
-        } else {
-          // Read home page to access button with GET method
-          fs.readFile('./client/dist/index.html', 'utf8', (err, file) => {
-            if (err) throw err;
-            // Return home page and random movie title
-            res.status(200).send(file + '</br>' + grabRandomMovie(data));
+  db.count((err, data) => {
+    if (err) {
+      throw err;
+    } else {
+      if (data['COUNT (title)'] > 0) {
+        console.log('something in database to read from')
+        // Read home page to access button with GET method
+        db.getMovies((err, data) => {
+          if (err) {
+            throw err;
+          } else {
+            // Read home page to access button with GET method
+            fs.readFile('./client/dist/index.html', 'utf8', (err, file) => {
+              if (err) throw err;
+              // Return home page and random movie title
+              res.status(200).send(file + '</br>' + grabRandomMovie(data));
+            });
+          }
+        });
+      } else {
+        console.log('nothing in database to read from')
+        // Access API
+        accessMovieAPI()
+        .then(() => {
+          // Retrieve movies from database
+          db.getMovies((err, data) => {
+            if (err) {
+              throw err;
+            } else {
+              // Read home page to access button with GET method
+              fs.readFile('./client/dist/index.html', 'utf8', (err, file) => {
+                if (err) throw err;
+                // Return home page and random movie title
+                res.status(200).send(file + '</br>' + grabRandomMovie(data));
+              });
+            }
           });
-        }
-      });
-    });
+        });
+      }
+    }
+  })
+
 });
 
 app.listen(port, () => {
