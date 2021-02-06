@@ -19,7 +19,7 @@ app.get('/movies', (req, res) => {
       throw err;
     } else {
       if (data['COUNT (title)'] > 0) {
-        console.log('something in database to read from')
+        console.log('Retrieve movie from Database')
         // Read home page to access button with GET method
         db.getMovies((err, data) => {
           if (err) {
@@ -29,12 +29,12 @@ app.get('/movies', (req, res) => {
             fs.readFile('./client/dist/index.html', 'utf8', (err, file) => {
               if (err) throw err;
               // Return home page and random movie title
-              res.status(200).send(file + '</br>' + grabRandomMovie(data));
+              res.status(200).send(file + '</br>' + '<p>' + grabRandomMovie(data) + '</p>');
             });
           }
         });
       } else {
-        console.log('nothing in database to read from')
+        console.log('Nothing in database, get movies from API')
         // Access API
         accessMovieAPI()
         .then(() => {
@@ -47,7 +47,7 @@ app.get('/movies', (req, res) => {
               fs.readFile('./client/dist/index.html', 'utf8', (err, file) => {
                 if (err) throw err;
                 // Return home page and random movie title
-                res.status(200).send(file + '</br>' + grabRandomMovie(data));
+                res.status(200).send(file + '</br>' + '<p>' + grabRandomMovie(data) + '</p>');
               });
             }
           });

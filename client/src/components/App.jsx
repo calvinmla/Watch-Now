@@ -12,7 +12,7 @@ class App extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <h1>Watch Now</h1>
+        <h1>Stop thinking about what to watch and...</h1>
         <MovieButton/>
       </React.Fragment>
     )

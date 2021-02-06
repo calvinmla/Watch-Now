@@ -24,39 +24,40 @@ Once the project moves into development, the press release can be used as a touc
 ## Sub-Heading ##
   <!-- > Describe who the market for the product is and what benefit they get. One sentence only underneath the title. -->
 
-  Stop agonizing on what to watch and Watch Now.
+  Stop thinking about what to watch and Watch Now.
 
 ## Summary ##
   <!-- > Give a summary of the product and the benefit. Assume the reader will not read anything else so make this paragraph good. -->
 
-  Our app will help the indecisive, indolent, and indifferent choose something to watch. With a click of a button, a top rated TV show or movie from https://www.themoviedb.org/ will appear. Stop thinking and Watch Now.
+  Our app will help the indecisive, indolent, and indifferent choose something to finally watch. With a click of a button, a top 100 movie from https://www.themoviedb.org/ will appear. Stop thinking and Watch Now.
 
 ## Problem ##
   <!-- > Describe the problem your product solves. -->
 
-Wasting time scrolling through endless options. Disputes between indecisive people deciding what to watch.
+Decreases wasted time scrolling through endless options of movies. Lower disputes between indecisive people deciding on what to watch.
 
 ## Solution ##
   <!-- > Describe how your product elegantly solves the problem. -->
 
-By clicking a button our app will access a movie API and randomly provide you a TV show or movie to watch.
+By clicking a button, our app will access movie The Movie DB API and randomly provide you a top 100 rated movie to watch.
 
 ## Quote from You ##
   <!-- > A quote from a spokesperson in your company. -->
 
-We understand your time is valuable so don't waste it deciding on what to watch.
+We understand your time is valuable. Enjoy watching a great movie now.
 
 ## How to Get Started ##
   <!-- > Describe how easy it is to get started. -->
 
-Open our app and click on a button. It's that easy!
+Head over to http://localhost:8080, click the button, and enjoy your movie. It's that easy!
 
 ## Customer Quote ##
   <!-- > Provide a quote from a hypothetical customer that describes how they experienced the benefit. -->
 
-Ever since using Watch Now my partner never complains about me being indecisive!
+Ever since using Watch Now, my partner never complains about me being indecisive during our movie nights!
 
 ## Closing and Call to Action ##
   <!-- > Wrap it up and give pointers where the reader should go next. -->
 
-Spend time choosing the things you want to do and when you can't, Watch Now.
+Watch all the movies that life has to offer
+...but when you can't. Watch Now.
