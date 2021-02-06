@@ -13,6 +13,7 @@ db.connection.connect((err) => {
   console.log('Database connected!')
 });
 
+// Insert movie data from API into the database
 db.insert = (values) => {
   db.connection.query('INSERT IGNORE INTO top_movies (title) VALUES ?', [values], (err, results, fields) => {
     if (err) {
@@ -23,6 +24,7 @@ db.insert = (values) => {
   });
 };
 
+// Retrieve all movies from database
 db.getMovies = (callback) => {
   db.connection.query('SELECT title FROM top_movies', (err, results) => {
     if (err) {
