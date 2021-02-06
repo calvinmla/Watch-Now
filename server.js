@@ -14,6 +14,7 @@ let pageCounter = 1;
 
 
 app.get('/movies', (req, res) => {
+  console.log(pageCounter)
   // Access API
   accessMovieAPI()
     .then(() => {
@@ -42,17 +43,19 @@ app.listen(port, () => {
 // Access movie API using Axios
 const accessMovieAPI = async () => {
   try {
-    await axios.get(`https://api.themoviedb.org/3/movie/top_rated?api_key=${api_key}&language=en-US&page=${pageCounter}`)
-      .then((response) => {
-        // Increment page counter for next GET request
-        pageCounter++;
-        // Invoke function to format data to be written to the database
-        return retrieveMovieTitles(response.data.results);
-      })
-      .then((movieTitles) => {
-        // Write movie list to the database
-        db.insert(movieTitles);
-      });
+    for (let i = 1; i <= 5; i++) {
+      await axios.get(`https://api.themoviedb.org/3/movie/top_rated?api_key=${api_key}&language=en-US&page=${i}`)
+        .then((response) => {
+          // Increment page counter for next GET request
+          // pageCounter++;
+          // Invoke function to format data to be written to the database
+          return retrieveMovieTitles(response.data.results);
+        })
+        .then((movieTitles) => {
+          // Write movie list to the database
+          db.insert(movieTitles);
+        });
+    }
   } catch(error) {
     throw error;
   }
