@@ -1,18 +1,20 @@
-import React { Fragment } from 'react';
+import React from 'react';
+import MovieButton from './movieButton.jsx';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      // still implementing
+      isClicked: false
+    };
   }
   render() {
     return (
-      <Fragment>
+      <React.Fragment>
         <h1>Watch Now</h1>
-        <form action='/movies' method='GET'>
-          <input type='submit' value='Click Here!'/>
-        </form>
-      </Fragment>
+        <MovieButton/>
+      </React.Fragment>
     )
   }
 };
