@@ -11,11 +11,24 @@ const port = 8080;
 app.use(express.static('./client/dist'));
 // app.use(bodyParser.urlencoded({ extended: true }));
 
+
+let pageCounter = 1;
+
 app.get('/movies', (req, res) => {
-  const movie = accessMovieAPI();
-  console.log('GET /movie --->', movie);
-  res.send(movie);
-})
+  accessMovieAPI()
+    .then(() => {
+      db.getMovies((err, data) => {
+        if (err) {
+          throw err;
+        } else {
+          fs.readFile('./client/dist/index.html', 'utf8', (err, file) => {
+            if (err) throw err;
+            res.send(file + '</br>' + grabRandomMovie(data));
+          });
+        }
+      });
+    });
+});
 
 app.listen(port, () => {
   console.log(`Listening at http://localhost:${port}`);
@@ -23,30 +36,20 @@ app.listen(port, () => {
 
 /*----------Functions----------*/
 
-const  accessMovieAPI = async () => {
-  let movie;
+const accessMovieAPI = async () => {
   try {
-    // possibly don't need to use .then after retrieving the data.
-    // functions do not need async
-    await axios.get('https://api.themoviedb.org/3/movie/top_rated?api_key=' + api_key)
+    await axios.get(`https://api.themoviedb.org/3/movie/top_rated?api_key=${api_key}&language=en-US&page=${pageCounter}`)
       .then((response) => {
-        // console.log(Array.isArray(response.data.results))
         return retrieveMovieTitles(response.data.results);
       })
       .then((movieTitles) => {
-        console.log('database array to insert', movieTitles);
         db.insert(movieTitles);
-        return movieTitles;
-      })
-      .then((movieTitles) => {
-        movie = (grabRandomMovie(movieTitles));
-      })
+      });
   } catch(error) {
     throw error;
-  };
-  console.log(`data in function ---> ${movie}`)  // need to send this result, not the promise
-  return movie;
-}
+  }
+  pageCounter++;
+};
 
 const retrieveMovieTitles = (movieAPIArray) => {
   const movies = [];
@@ -56,10 +59,10 @@ const retrieveMovieTitles = (movieAPIArray) => {
     movies.push(tempArray);
   }
   return movies;
-}
+};
 
-const grabRandomMovie = (movieTitles) => {
-  const numberOfTitles = movieTitles.length;
-  const randomNumber = Math.floor(Math.random() * numberOfTitles);
-  return movieTitles[randomNumber];
-}
+const grabRandomMovie = (databaseMovies) => {
+  let numberOfMovies = databaseMovies.length
+  let randomNumber = Math.floor(Math.random() * numberOfMovies);
+  return databaseMovies[randomNumber].title;
+};
