@@ -1,3 +1,4 @@
+const dotenv = require('dotenv').config();
 const fs = require('fs');
 const express = require('express');
 const axios = require('axios');
@@ -5,7 +6,7 @@ const api_key = require('./api-key.js');
 const db = require('./db.js');
 
 const app = express();
-const port = 8080;
+const port = process.env.SERVER_PORT;
 
 app.use(express.static('./client/dist'));
 

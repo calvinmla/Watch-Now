@@ -36,4 +36,5 @@ bower_components/
 .floo
 .flooignore
 
-api-key.js
+# Environmental variables
+.env
