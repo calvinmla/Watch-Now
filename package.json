@@ -31,10 +31,11 @@
     "webpack-dev-server": "^3.11.2"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon node server.js",
     "build": "webpack",
-    "build-server": "webpack serve"
+    "build-server": "webpack serve",
+    "create-db": "mysql -u root < schema.sql",
+    "start": "nodemon node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",

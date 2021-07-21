@@ -10,6 +10,10 @@ const port = process.env.SERVER_PORT;
 
 app.use(express.static('./client/dist'));
 
+app.listen(port, () => {
+  console.log(`Listening at http://localhost:${port}`);
+});
+
 // API page incrementer
 let pageCounter = 1;
 
@@ -56,14 +60,11 @@ app.get('/movies', (req, res) => {
       }
     }
   })
-
 });
 
-app.listen(port, () => {
-  console.log(`Listening at http://localhost:${port}`);
-});
 
 /*----------Functions----------*/
+
 
 // Access movie API using Axios
 const accessMovieAPI = async () => {
@@ -87,7 +88,7 @@ const accessMovieAPI = async () => {
 };
 
 // Function to convert API data to be written to database
-const retrieveMovieTitles = (movieAPIArray) => {
+const retrieveMovieTitles = movieAPIArray => {
   const movies = [];
   for (let i = 0; i < movieAPIArray.length; i++) {
     const tempArray = [];
@@ -99,7 +100,7 @@ const retrieveMovieTitles = (movieAPIArray) => {
 };
 
 // Function to grab a random movie from the database
-const grabRandomMovie = (databaseMovies) => {
+const grabRandomMovie = databaseMovies => {
   let numberOfMovies = databaseMovies.length
   let randomNumber = Math.floor(Math.random() * numberOfMovies);
   return databaseMovies[randomNumber].title;
